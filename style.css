@@ -22,5 +22,9 @@ nav {
     border-bottom: 3px solid #fff;
     background-color: var(--primary-color);
     color: #fff;
+}
 
+nav a {
+    color: #fff;
+    font-size: 1.3rem;
 }
