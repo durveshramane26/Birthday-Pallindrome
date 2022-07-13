@@ -28,3 +28,52 @@ nav a {
     color: #fff;
     font-size: 1.3rem;
 }
+
+.heor-container {
+    display: grid;
+    grid-template-columns:50% 50%;
+    padding: 50px 7% 100px 7%;
+    justify-content: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.137);
+    background-color: #fff;
+}
+
+.heor-container .content-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;   
+}
+
+.heor-container .img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heor-container .img-box img{
+    border: 3px solid var(--primary-color);
+    padding: 10px;
+    width: 70%;
+}
+
+.heor-container .content-box h1{
+    font-size: 3rem;
+    line-height: 2.9rem;
+}
+
+.heor-container .content-box p{
+    font-size: 1.4rem;
+    margin-top: 10px;
+    width: 70%;
+}
+
+.heor-container .btn-down {
+    background-color: var(--primary-color);
+    padding: 10px 35px;
+    border: 0.5px solid var(--primary-color);
+    transition: 0.2s all;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 50px;
+}
