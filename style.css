@@ -122,3 +122,37 @@ nav a {
     color: #fff;
 }
 
+
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.247);
+    color: #fff;
+    padding: 20px;
+}
+
+footer p{
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.514);
+}
+
+footer ul li{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 15px;
+    font-size: 1.3rem;
+}
+
+footer ul li a{
+    color: rgba(0, 0, 0, 0.623);
+    transition: 0.2s all;
+}
+
+footer ul li a:hover{
+    color: var(--hover-color);
+}
