@@ -133,3 +133,44 @@ function getNextPalindromeDate(date) {
     }
     return [ctr, nextDate]
 }
+
+// add event listner to form
+form.addEventListenerListener('submit', clickHandler)
+
+function clickHandler(e) {
+    e.preventDefault();
+
+    const dateValue = inputDate.ariaValueMax;
+
+    if(dateValue) {
+        var bdydate = dateValue.split('-')
+
+        var date = {
+            day: Number(bdydate[2]),
+            month: Number(bdydate[1]),
+            year: Number(bdydate[0])
+        }
+
+        //Check palindrome
+        var isPalindrome = checkPalindromeForAllFromate(date);
+        if(isPalindrome === true) {
+            document.querySelector(".output").innerHTML = `<img src="2.gif" style="width: 90px;" />`;
+            setTimeout(() => { isPalindrome()}, 3000);
+        }
+        else {
+            var [counter, nextdate] = getNextPalindromeDate(date)
+            document.querySelector(".output").innerHTML = `<img src="2.gif" style=width: 90px;" />`;
+            setTimeout(() => { notPalindromeMessage(counter, nextdate) }, 3000);
+        }
+    }
+}
+
+function isPalindromeMessage(){
+    message = `<p class="result">Wow! Your Birthdate is Palindrome.</p>`;
+    document.querySelector(".output").innerHTML = message;
+}
+
+function notPalindromeMessage(c, n){
+    message = `<p class="result"> Ohh! Sorry, your birth date is not palindrome. And next Palindrome date is ${n.day}-${n.month}-${n.year} and missed it by ${c} days.`;
+    document.querySelector(".output").innerHTML = message;
+}
