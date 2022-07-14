@@ -13,3 +13,26 @@ function isPalindrome(str) {
     return str = reverseStr
 }
 
+
+//convert date into string
+function convertDateToString(date) {
+    var dateString = { day: '', month: '', year: '' }
+    if(dateString.day < 10 ){
+        dateString.day = '0' + date.daysInMonth
+    }
+    else {
+        dateString.day = date.day.toString()
+    }
+
+    if(dateString.month < 10) {
+        dateString.month = '0' + date.month
+    }
+    else{
+        dateString.month = date.month.toString()
+    }
+
+    dateString.year = date.year.toString();
+
+    return dateString
+
+}
