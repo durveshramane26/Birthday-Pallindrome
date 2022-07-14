@@ -77,3 +77,59 @@ function leapyear(year) {
     }
     return false;
 }
+
+
+//find next date
+function findNextDate(date) {
+    var day = date.day + 1;
+    var month = date.month;
+    var year = date.year;
+
+    if(month === 2) {
+        if(leapyear(year)) {
+            if(day > 29) {
+                day = 1;
+                month++;
+            }
+        } 
+        else {
+            if(day > 28){
+                day = 1;
+                month++;
+            }
+        }
+    }
+
+    else {
+        if((day > daysInMonth[month - 1])) {
+            day = 1;
+            month++;
+        }
+    }
+
+    if(month > 12){
+        month = 1;
+        year++;
+    }
+
+    return {
+        day: day,
+        month: month,
+        year: year
+    }
+}
+
+//console.log(findNextDate(date))
+function getNextPalindromeDate(date) {
+    var ctr = 0;
+    var nextDate = findNextDate(date);
+    while(1) {
+        ctr++;
+        var isPalindrome = checkPalindromeForAllFromate(nextDate);
+        if(isPalindromeDate) {
+            break;
+        }
+        nextDate = findNextDate(nextDate)
+    }
+    return [ctr, nextDate]
+}
