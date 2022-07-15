@@ -122,7 +122,15 @@ nav a {
     color: #fff;
 }
 
+.output{
+    margin: 20px 0 10px 0;
+}
 
+.result{
+    background-color: rgba(0, 0, 0, 0.116);
+    padding: 12px;
+    border-radius: 4px;
+}
 
 footer{
     display: flex;
