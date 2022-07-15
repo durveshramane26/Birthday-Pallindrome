@@ -1,43 +1,42 @@
+// selecting element
 const form = document.forms[0];
 const inputDate = document.querySelector("#date");
-const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30,  31, 30, 31];
+const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-//reverse string function
+// reverse string function 
 function reverseString(str) {
     return str.split("").reverse().join('');
 }
 
-//to check the date is palindrome or not
+//to check date is palindrome or not
 function isPalindrome(str) {
     var reverseStr = reverseString(str)
     return str = reverseStr
 }
 
-
 //convert date into string
 function convertDateToString(date) {
+
     var dateString = { day: '', month: '', year: '' }
-    if(dateString.day < 10 ){
-        dateString.day = '0' + date.daysInMonth
-    }
-    else {
+
+    if (dateString.day < 10) {
+        dateString.day = '0' + date.day
+    } else {
         dateString.day = date.day.toString()
     }
 
-    if(dateString.month < 10) {
+    if (dateString.month < 10) {
         dateString.month = '0' + date.month
-    }
-    else{
+    } else {
         dateString.month = date.month.toString()
     }
 
     dateString.year = date.year.toString();
 
     return dateString
-
 }
 
-//get all date format
+//get all date formate
 function allDateFormate(date) {
     let dateString = convertDateToString(date);
     var ddmmyyyy = dateString.day + dateString.month + dateString.year;
@@ -49,65 +48,62 @@ function allDateFormate(date) {
     return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd]
 }
 
-function checkPalindromeForAllFromate(date) {
+function checkPalindromeForAllFormate(date) {
     var listOfPalindrome = allDateFormate(date)
 
     var flag = false;
-    for (i = 0; i < listOfPalindrome.length; i++){
-        if(listOfPalindrome[i] === reverseString(listOfPalindrome[i])){
+    for (i = 0; i < listOfPalindrome.length; i++) {
+        console.log("prajwal")
+        if (listOfPalindrome[i] === reverseString(listOfPalindrome[i])) {
             flag = true;
             break;
         }
     }
-
     return flag;
 }
 
-
-//Checking leapyear
-function leapyear(year) {
-    if(year % 400 === 0) {
+//checking leapyear
+function leapYear(year) {
+    if (year % 400 === 0) {
         return true
     }
-    if(year % 100 === 0){
+    if (year % 100 === 0) {
         return false
     }
-    if(year % 4 === 0){
+    if (year % 4 === 0) {
         return true
     }
     return false;
 }
 
-
-//find next date
+// find next date
 function findNextDate(date) {
     var day = date.day + 1;
     var month = date.month;
     var year = date.year;
 
-    if(month === 2) {
-        if(leapyear(year)) {
-            if(day > 29) {
+    if (month === 2) {
+        if (leapYear(year)) {
+            if (day > 29) {
                 day = 1;
                 month++;
             }
-        } 
-        else {
-            if(day > 28){
+        } else {
+            if (day > 28) {
                 day = 1;
-                month++;
+               month++;
             }
         }
     }
-
     else {
-        if((day > daysInMonth[month - 1])) {
+        if ((day > daysInMonth[month - 1])) {
             day = 1;
             month++;
         }
+
     }
 
-    if(month > 12){
+    if (month > 12) {
         month = 1;
         year++;
     }
@@ -119,14 +115,15 @@ function findNextDate(date) {
     }
 }
 
-//console.log(findNextDate(date))
+// console.log(findNextDate(date))
 function getNextPalindromeDate(date) {
     var ctr = 0;
     var nextDate = findNextDate(date);
-    while(1) {
+    while (1) {
+        console.log("durvesh")
         ctr++;
-        var isPalindrome = checkPalindromeForAllFromate(nextDate);
-        if(isPalindromeDate) {
+        var isPalinromeDate = checkPalindromeForAllFormate(nextDate);
+        if (isPalinromeDate) {
             break;
         }
         nextDate = findNextDate(nextDate)
@@ -134,43 +131,45 @@ function getNextPalindromeDate(date) {
     return [ctr, nextDate]
 }
 
-// add event listner to form
-form.addEventListenerListener('submit', clickHandler)
+// add event listner to form 
+form.addEventListener('submit', clickHandler)
 
 function clickHandler(e) {
     e.preventDefault();
 
-    const dateValue = inputDate.ariaValueMax;
+    const dateValue = inputDate.value;
 
-    if(dateValue) {
+    if (dateValue) {
         var bdydate = dateValue.split('-')
 
-        var date = {
+        var date = { 
             day: Number(bdydate[2]),
             month: Number(bdydate[1]),
             year: Number(bdydate[0])
         }
 
-        //Check palindrome
-        var isPalindrome = checkPalindromeForAllFromate(date);
-        if(isPalindrome === true) {
+        //check palindrome
+        var isPalindrome = checkPalindromeForAllFormate(date); 
+
+        if (isPalindrome === true) {
             document.querySelector(".output").innerHTML = `<img src="2.gif" style="width: 90px;" />`;
-            setTimeout(() => { isPalindrome()}, 3000);
-        }
-        else {
+            setTimeout(() => { isPalindromeMessage() }, 3000);
+
+        } else {
             var [counter, nextdate] = getNextPalindromeDate(date)
-            document.querySelector(".output").innerHTML = `<img src="2.gif" style=width: 90px;" />`;
+            document.querySelector(".output").innerHTML = `<img src="2.gif" style="width: 90px;" />`;
             setTimeout(() => { notPalindromeMessage(counter, nextdate) }, 3000);
         }
     }
 }
 
-function isPalindromeMessage(){
-    message = `<p class="result">Wow! Your Birthdate is Palindrome.</p>`;
+function isPalindromeMessage() {
+    message = `<p class="result">Wow! Your birthdate is palindrome.</p>`;
     document.querySelector(".output").innerHTML = message;
 }
 
-function notPalindromeMessage(c, n){
-    message = `<p class="result"> Ohh! Sorry, your birth date is not palindrome. And next Palindrome date is ${n.day}-${n.month}-${n.year} and missed it by ${c} days.`;
+function notPalindromeMessage(c, n) {
+    message = `<p class="result"> Ohh! Sorry, your birth date is not palindrome. And next palindrome date is ${n.day}-${n.month}-${n.year} and missed it by ${c} days.`;
     document.querySelector(".output").innerHTML = message;
 }
+
